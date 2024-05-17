@@ -1,0 +1,15 @@
+kind = "DojoModel"
+class_hash = "0x25d45e1fc35c5cd67b71930676eb01396a9cc82f322cb0d0cee168bace51efc"
+original_class_hash = "0x25d45e1fc35c5cd67b71930676eb01396a9cc82f322cb0d0cee168bace51efc"
+abi = "manifests/dev/abis/base/models/lethal_events_initialized.json"
+name = "lethal::events::initialized"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "initialized"
+type = "bool"
+key = false

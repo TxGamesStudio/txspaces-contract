@@ -1,0 +1,25 @@
+kind = "DojoModel"
+class_hash = "0x4855dd11c2e2d8993411c5764554a118b4b87f2b2e46ec9ae6d34f23a6d8972"
+original_class_hash = "0x4855dd11c2e2d8993411c5764554a118b4b87f2b2e46ec9ae6d34f23a6d8972"
+abi = "manifests/dev/abis/base/models/lethal_events_character_deleted.json"
+name = "lethal::events::character_deleted"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "created_at"
+type = "u64"
+key = true
+
+[[members]]
+name = "index"
+type = "u8"
+key = false
+
+[[members]]
+name = "level"
+type = "u16"
+key = false

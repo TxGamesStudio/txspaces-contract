@@ -1,0 +1,9 @@
+kind = "DojoContract"
+class_hash = "0x65526fcc94c9573c4f486102dec0cbe0dd082ea7eefbe1f636312a6387d6401"
+original_class_hash = "0x65526fcc94c9573c4f486102dec0cbe0dd082ea7eefbe1f636312a6387d6401"
+base_class_hash = "0x0"
+abi = "manifests/dev/abis/base/contracts/lethal_systems_game_actions_GameActions.json"
+reads = []
+writes = []
+computed = []
+name = "lethal::systems::game_actions::GameActions"

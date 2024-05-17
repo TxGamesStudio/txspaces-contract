@@ -1,0 +1,9 @@
+kind = "DojoContract"
+class_hash = "0x6bdac19bd4e0b3493a2d5c2c73919ace617fa0af384964cdfaaf8357678bf5a"
+original_class_hash = "0x6bdac19bd4e0b3493a2d5c2c73919ace617fa0af384964cdfaaf8357678bf5a"
+base_class_hash = "0x0"
+abi = "manifests/testnet/abis/base/contracts/lethal_systems_user_User.json"
+reads = []
+writes = []
+computed = []
+name = "lethal::systems::user::User"

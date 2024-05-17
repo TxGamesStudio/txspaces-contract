@@ -1,0 +1,218 @@
+[world]
+kind = "Contract"
+class_hash = "0x799bc4e9da10bfb3dd88e6f223c9cfbf7745435cd14f5d69675ea448e578cd"
+original_class_hash = "0x799bc4e9da10bfb3dd88e6f223c9cfbf7745435cd14f5d69675ea448e578cd"
+abi = "abis/deployments/dojo_world_world.json"
+address = "0x69cbccb9ebcf1db98b70c8c613efab4b92a26d84301b9bf2aaa63900aefdf1f"
+transaction_hash = "0x3b61f3e87e516918feedf46ca69590dd53de7e653ec0de38e58860a7a892d76"
+seed = "lethal"
+name = "dojo::world::world"
+
+[base]
+kind = "Class"
+class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+original_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+name = "dojo::base::base"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x4f5c06f4a67137ea12bba5f9079b9a9b9b99f41db30312661bcbbb4cd687c85"
+class_hash = "0x65526fcc94c9573c4f486102dec0cbe0dd082ea7eefbe1f636312a6387d6401"
+original_class_hash = "0x65526fcc94c9573c4f486102dec0cbe0dd082ea7eefbe1f636312a6387d6401"
+base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+abi = "abis/deployments/contracts/lethal_systems_game_actions_GameActions.json"
+reads = []
+writes = []
+computed = []
+name = "lethal::systems::game_actions::GameActions"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x4f783593710a61545745d6600b6ee975ffc5e78169df85a4e584a3eb0e3f613"
+class_hash = "0x6bdac19bd4e0b3493a2d5c2c73919ace617fa0af384964cdfaaf8357678bf5a"
+original_class_hash = "0x6bdac19bd4e0b3493a2d5c2c73919ace617fa0af384964cdfaaf8357678bf5a"
+base_class_hash = "0x679177a2cb757694ac4f326d01052ff0963eac0bc2a17116a2b87badcdf6f76"
+abi = "abis/deployments/contracts/lethal_systems_user_User.json"
+reads = []
+writes = []
+computed = []
+name = "lethal::systems::user::User"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x790f408d1913acb651dd5e0d9b6cbba6a29ea63715edd3e587a7947bccbebea"
+original_class_hash = "0x790f408d1913acb651dd5e0d9b6cbba6a29ea63715edd3e587a7947bccbebea"
+abi = "abis/deployments/models/lethal_events_character_bought.json"
+name = "lethal::events::character_bought"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "created_at"
+type = "u64"
+key = true
+
+[[models.members]]
+name = "index"
+type = "u8"
+key = false
+
+[[models.members]]
+name = "level"
+type = "u16"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x4855dd11c2e2d8993411c5764554a118b4b87f2b2e46ec9ae6d34f23a6d8972"
+original_class_hash = "0x4855dd11c2e2d8993411c5764554a118b4b87f2b2e46ec9ae6d34f23a6d8972"
+abi = "abis/deployments/models/lethal_events_character_deleted.json"
+name = "lethal::events::character_deleted"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "created_at"
+type = "u64"
+key = true
+
+[[models.members]]
+name = "index"
+type = "u8"
+key = false
+
+[[models.members]]
+name = "level"
+type = "u16"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x7665d84154933b9708a32003839a548570e0ff7c53d2c1199ec31a292ed18e3"
+original_class_hash = "0x7665d84154933b9708a32003839a548570e0ff7c53d2c1199ec31a292ed18e3"
+abi = "abis/deployments/models/lethal_events_character_merged.json"
+name = "lethal::events::character_merged"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "created_at"
+type = "u64"
+key = true
+
+[[models.members]]
+name = "index1"
+type = "u8"
+key = false
+
+[[models.members]]
+name = "index2"
+type = "u8"
+key = false
+
+[[models.members]]
+name = "prev_level"
+type = "u16"
+key = false
+
+[[models.members]]
+name = "next_level"
+type = "u16"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x25d45e1fc35c5cd67b71930676eb01396a9cc82f322cb0d0cee168bace51efc"
+original_class_hash = "0x25d45e1fc35c5cd67b71930676eb01396a9cc82f322cb0d0cee168bace51efc"
+abi = "abis/deployments/models/lethal_events_initialized.json"
+name = "lethal::events::initialized"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "initialized"
+type = "bool"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x406ff65cb8340f01826b3f1628b60c294d1b32f8182e7f1c3d04a80e4c61522"
+original_class_hash = "0x406ff65cb8340f01826b3f1628b60c294d1b32f8182e7f1c3d04a80e4c61522"
+abi = "abis/deployments/models/lethal_models_character_character.json"
+name = "lethal::models::character::character"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "pos_idx"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "level"
+type = "u16"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x138531a5aec076abfb9c59b4d0f83353a2d6522579d177344a39814629730ea"
+original_class_hash = "0x138531a5aec076abfb9c59b4d0f83353a2d6522579d177344a39814629730ea"
+abi = "abis/deployments/models/lethal_models_character_level_character_level.json"
+name = "lethal::models::character_level::character_level"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "level"
+type = "u32"
+key = true
+
+[[models.members]]
+name = "count"
+type = "u32"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x1b98562c7da3ac459136baa26f41a65b40af07b0f7b28b701d9dadd1d85e844"
+original_class_hash = "0x1b98562c7da3ac459136baa26f41a65b40af07b0f7b28b701d9dadd1d85e844"
+abi = "abis/deployments/models/lethal_models_user_data_user_data.json"
+name = "lethal::models::user_data::user_data"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "initialized"
+type = "bool"
+key = false
+
+[[models.members]]
+name = "balance"
+type = "u128"
+key = false
+
+[[models.members]]
+name = "snapshoted_at"
+type = "u64"
+key = false
