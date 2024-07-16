@@ -16,6 +16,7 @@ use core::debug::PrintTrait;
     use lethal::models::character::Character;
     use lethal::models::character_level::CharacterLevel;
 
+    use lethal::systems::admin::{Admin as admin_actions, IAdminDispatcher, IAdminDispatcherTrait};
     use lethal::systems::user::{User as user_actions, IUserDispatcher, IUserDispatcherTrait};
     use lethal::systems::game_actions::{GameActions as game_actions, IGameActionsDispatcher, IGameActionsDispatcherTrait};
 
@@ -35,6 +36,7 @@ use core::debug::PrintTrait;
 
     #[derive(Drop)]
     struct Systems {
+        admin: IAdminDispatcher,
         user: IUserDispatcher,
         game_actions: IGameActionsDispatcher,
     }
@@ -49,9 +51,11 @@ use core::debug::PrintTrait;
         let world = spawn_test_world(models);
 
         // // [Setup] Systems
-        let user_address = world.deploy_contract('user', user_actions::TEST_CLASS_HASH.try_into().unwrap());
-        let game_actions_address = world.deploy_contract('game_actions', game_actions::TEST_CLASS_HASH.try_into().unwrap());
+        let admin_address = world.deploy_contract('admin', admin_actions::TEST_CLASS_HASH.try_into().unwrap(), array![].span());
+        let user_address = world.deploy_contract('user', user_actions::TEST_CLASS_HASH.try_into().unwrap(), array![].span());
+        let game_actions_address = world.deploy_contract('game_actions', game_actions::TEST_CLASS_HASH.try_into().unwrap(), array![].span());
         let systems = Systems {
+            admin: IAdminDispatcher { contract_address: admin_address }, 
             user: IUserDispatcher { contract_address: user_address }, 
             game_actions: IGameActionsDispatcher { contract_address: game_actions_address },
         };

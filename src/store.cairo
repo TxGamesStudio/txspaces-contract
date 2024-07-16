@@ -5,15 +5,20 @@ use core::debug::PrintTrait;
 
 // Straknet imports
 use starknet::ContractAddress;
+use starknet::{get_caller_address, get_block_timestamp};
 
 // Dojo imports
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
 // Models imports
 use lethal::constants::{BOARD_SIZE};
+use lethal::models::random::{Random};
 use lethal::models::user_data::{UserData};
+use lethal::models::invitation_code::{InvitationCode};
 use lethal::models::character::{Character, CharacterTrait};
 use lethal::models::character_level::{CharacterLevel};
+
+use lethal::utils::{rotl, U64};
 
 /// Store struct.
 #[derive(Copy, Drop)]
@@ -29,9 +34,27 @@ impl StoreImpl of StoreTrait {
         Store { world: world }
     }
 
+    fn random(self: Store) -> Random {
+        get!(self.world, (1), (Random))
+    }
+
+    fn set_random(self: Store, random: Random) {
+        set!(self.world, (random))
+    }
+
     #[inline(always)]
     fn user_data(self: Store, player: ContractAddress) -> UserData {
         get!(self.world, (player), (UserData))
+    }
+    
+    #[inline(always)]
+    fn invitation_code(self: Store, code: felt252) -> InvitationCode {
+        get!(self.world, (code), (InvitationCode))
+    }
+
+    #[inline(always)]
+    fn set_invitation_code(self: Store, code: InvitationCode) {
+        set!(self.world, (code));
     }
 
     #[inline(always)]
@@ -102,5 +125,43 @@ impl StoreImpl of StoreTrait {
         };
 
         characters
+    }
+
+    fn next_random(self: Store) -> u128 {
+        let mut random = self.random();
+        let result = (rotl(random.s0 * 5, 7) * 9) & U64;
+
+        random.s1 = (random.s1 ^ random.s0) & U64;
+        
+        random.s0 = (rotl(random.s0, 24) ^ random.s1 ^ (random.s1 * 65536)) & U64;
+        random.s1 = (rotl(random.s1, 37) & U64);
+        self.set_random(random);
+
+        result
+    }
+
+    fn generate_code(self: Store) -> felt252 {
+        let mut randNo = self.next_random() ^ 
+            starknet::contract_address_to_felt252(get_caller_address()).try_into().unwrap();
+        let mut code: u128 = 0;
+
+        let mut index: u8 = 0;
+        loop {
+            let char = (randNo & 0xff) % 52;
+            
+            if (char < 26) {
+                code = (code * 256) | (char + 65);  // A
+            } else {
+                code = (code * 256) | (char - 26 + 97);  // a
+            }
+            
+            randNo /= 256;
+            index += 1;
+            if (index >= 6) {
+                break();
+            }
+        };
+
+        code.try_into().unwrap()
     }
 }

@@ -19,7 +19,7 @@ fn test_character() {
     // [Setup]
     let (world, systems, context) = setup::spawn();
     let store = StoreTrait::new(world);
-    systems.user.init();
+    systems.user.init('');
 
     systems.game_actions.buy(1);
 

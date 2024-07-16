@@ -1,14 +1,18 @@
 mod constants;
 mod store;
 mod events;
+mod utils;
 
 mod systems {
+    mod admin;
     mod user;
     mod game_actions;
 }
 
 mod models {
+    mod random;
     mod user_data;
+    mod invitation_code;
     mod character;
     mod character_level;
 }

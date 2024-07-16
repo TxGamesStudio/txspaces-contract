@@ -1,18 +1,13 @@
 use starknet::ContractAddress;
  
-#[derive(Model, Drop, Serde)]
+#[derive(Model, Copy, Drop, Serde)]
+#[dojo::model]
 struct UserData {
     #[key]
     player: ContractAddress,
+    code: felt252,
     
     initialized: bool,
     balance: u128,
     snapshoted_at: u64
-}
-
-trait UserDataTrait {
-}
-
-impl UserDataImpl of UserDataTrait {
-    
 }

@@ -5,7 +5,8 @@ use cubit::f128::math::{ops};
 
 use lethal::constants::{BOARD_SIZE};
 
-#[derive(Model, Drop, Serde)]
+#[derive(Model, Copy, Drop, Serde)]
+#[dojo::model]
 struct Character {
     #[key]
     player: ContractAddress,

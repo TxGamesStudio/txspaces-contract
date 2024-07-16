@@ -4,6 +4,7 @@ use cubit::f128::math::{ops};
 use starknet::ContractAddress;
  
 #[derive(Model, Copy, Drop, Serde)]
+#[dojo::model]
 struct CharacterLevel {
     #[key]
     player: ContractAddress,
