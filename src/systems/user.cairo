@@ -3,7 +3,7 @@ use starknet::ContractAddress;
 
 #[starknet::interface]
 trait IUser<TContractState> {
-    fn init(self: @TContractState, inviteCode: felt252);
+    fn init(self: @TContractState, code: felt252);
     fn user_balance(self: @TContractState, player: ContractAddress) -> u128;
 }
 
@@ -23,15 +23,22 @@ mod User {
 
     #[abi(embed_v0)]
     impl IUserImpl of IUser<ContractState> {
-        fn init(self: @ContractState, inviteCode: felt252) {
+        fn init(self: @ContractState, code: felt252) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
 
             let mut user_data = store.user_data(player);
             assert(!user_data.initialized, 'initialized');
-            user_data.initialized = true;
 
+            let mut ic0 = store.invitation_code(code);
+            if (!ic0.player.is_zero()) {
+                assert(ic0.usedCount < ic0.limit, 'code is fully used');
+                ic0.usedCount += 1;
+                store.set_invitation_code(ic0);
+            }
+
+            user_data.initialized = true;
             user_data.balance = DEFAULT_BALANCE;
             user_data.snapshoted_at = starknet::get_block_timestamp();
             loop {

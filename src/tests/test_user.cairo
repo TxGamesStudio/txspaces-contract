@@ -24,13 +24,22 @@ fn test_init() {
     systems.admin.add_default_code(0x1);
     systems.admin.add_default_code(0x2);
     systems.admin.add_default_code(0x3);
+
     systems.user.init('');
 
-    let user_data = store.user_data(context.player_id);
-    assert(user_data.initialized, 'not initialized');
-    assert(user_data.balance == DEFAULT_BALANCE, 'invalid balance value');
-    user_data.code.print();
+    let user_data_0 = store.user_data(context.player_id);
+    assert(user_data_0.initialized, 'not initialized');
+    assert(user_data_0.balance == DEFAULT_BALANCE, 'invalid balance value');
+    user_data_0.code.print();
 
+    let player1 = starknet::contract_address_const::<'PLAYER1'>();
+    set_contract_address(player1);
+    systems.user.init(user_data_0.code);
 
+    let user_data_1 = store.user_data(player1);
+    assert(user_data_1.initialized, 'not initialized');
+    assert(user_data_1.balance == DEFAULT_BALANCE, 'invalid balance value');
+    user_data_1.code.print();
+    
 }
 
