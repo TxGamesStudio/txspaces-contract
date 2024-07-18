@@ -1,0 +1,10 @@
+kind = "DojoContract"
+class_hash = "0x2a1b3b372898d596e300b9dd4e69c48b4bfeb24f840c3bc89b3fd3380d6634b"
+original_class_hash = "0x2a1b3b372898d596e300b9dd4e69c48b4bfeb24f840c3bc89b3fd3380d6634b"
+base_class_hash = "0x0"
+abi = "manifests/testnet/abis/base/contracts/txspaces_systems_admin_Admin.json"
+reads = []
+writes = []
+computed = []
+init_calldata = []
+name = "txspaces::systems::admin::Admin"

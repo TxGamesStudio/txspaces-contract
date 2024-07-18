@@ -1,7 +1,7 @@
 [package]
 cairo-version = "=2.6.3"
-name = "lethal"
-version = "0.6.0"
+name = "txspaces"
+version = "0.0.1"
  
 [cairo]
 sierra-replace-ids = true
@@ -23,6 +23,10 @@ rpc_url = "http://localhost:5050/"
 # Default account for katana with seed = 0
 account_address = "0xb3ff441a68610b30fd5e2abbf3a1548eb6ba6f3559f2862bf2dc757e5828ca"
 private_key = "0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a"
-world_address = "0x69cbccb9ebcf1db98b70c8c613efab4b92a26d84301b9bf2aaa63900aefdf1f"
+world_address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc81"
 
-
+[profile.testnet.tool.dojo.env]
+rpc_url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/mZyFr_90NKxRaHUM2mgreCIsuvAGuRU-"
+account_address = "0x03D9Fb4D09599AE4BdDd396548D314dc225b37d944cE341856eD7D2C82b9bDEF"
+private_key = "0x02ab613451cd3c9837da80b08ce3ace7c9325263e36a8907fdd8abf909a87a3f"
+world_address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc81"

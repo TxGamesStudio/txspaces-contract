@@ -1,6 +1,6 @@
 use starknet::ContractAddress;
-use lethal::constants::{MAX_BLOCK_TIME};
-use lethal::store::{Store, StoreTrait};
+use txspaces::constants::{MAX_BLOCK_TIME};
+use txspaces::store::{Store, StoreTrait};
 
 const U64: u128 = 0xffffffffffffffff_u128; // 2**64-1
 

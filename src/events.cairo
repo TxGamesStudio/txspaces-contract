@@ -10,6 +10,15 @@ struct Initialized {
 
 #[derive(Model, Copy, Drop, Serde)]
 #[dojo::event]
+struct ActionCompleted {
+    #[key]
+    player: ContractAddress,
+    #[key]
+    action_id: felt252,
+}
+
+#[derive(Model, Copy, Drop, Serde)]
+#[dojo::event]
 struct CharacterBought {
     #[key]
     player: ContractAddress,

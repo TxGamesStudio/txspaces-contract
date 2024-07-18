@@ -11,10 +11,10 @@ trait IAdmin<TContractState> {
 mod Admin {
     use core::traits::TryInto;
     use starknet::{get_caller_address};
-    use lethal::store::{Store, StoreTrait};
-    use lethal::models::random::{Random};
-    use lethal::models::invitation_code::{InvitationCode};
-    use lethal::utils::{splitmix, U64};
+    use txspaces::store::{Store, StoreTrait};
+    use txspaces::models::random::{Random};
+    use txspaces::models::invitation_code::{InvitationCode};
+    use txspaces::utils::{splitmix, U64};
     use super::{ContractAddress, IAdmin};
 
     #[abi(embed_v0)]

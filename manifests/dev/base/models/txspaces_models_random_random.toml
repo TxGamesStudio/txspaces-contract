@@ -1,0 +1,20 @@
+kind = "DojoModel"
+class_hash = "0x5a66cb47fc146f0b349426d74ffe943112faac191cb6e004a4b414333041b28"
+original_class_hash = "0x5a66cb47fc146f0b349426d74ffe943112faac191cb6e004a4b414333041b28"
+abi = "manifests/dev/abis/base/models/txspaces_models_random_random.json"
+name = "txspaces::models::random::random"
+
+[[members]]
+name = "id"
+type = "u8"
+key = true
+
+[[members]]
+name = "s0"
+type = "u128"
+key = false
+
+[[members]]
+name = "s1"
+type = "u128"
+key = false

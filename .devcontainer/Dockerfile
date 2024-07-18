@@ -7,7 +7,8 @@ RUN echo "source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN curl https://get.starkli.sh | sh
 RUN curl -L https://install.dojoengine.org | bash
-RUN echo "export PATH=$PATH:/root/.local/bin:/root/.dojo/bin:/root/.cargo/bin" >> ~/.zshrc
+RUN curl -L https://slot.cartridge.sh | bash
+RUN echo "export PATH=$PATH:/root/.local/bin:/root/.dojo/bin:/root/.slot/bin:/root/.cargo/bin" >> ~/.zshrc
 
 ENV SHELL /bin/zsh
 RUN curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- --version 2.6.3

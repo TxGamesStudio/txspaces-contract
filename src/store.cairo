@@ -11,14 +11,14 @@ use starknet::{get_caller_address, get_block_timestamp};
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
 // Models imports
-use lethal::constants::{BOARD_SIZE};
-use lethal::models::random::{Random};
-use lethal::models::user_data::{UserData};
-use lethal::models::invitation_code::{InvitationCode};
-use lethal::models::character::{Character, CharacterTrait};
-use lethal::models::character_level::{CharacterLevel};
+use txspaces::constants::{BOARD_SIZE};
+use txspaces::models::random::{Random};
+use txspaces::models::user_data::{UserData};
+use txspaces::models::invitation_code::{InvitationCode};
+use txspaces::models::character::{Character, CharacterTrait};
+use txspaces::models::character_level::{CharacterLevel};
 
-use lethal::utils::{rotl, U64};
+use txspaces::utils::{rotl, U64};
 
 /// Store struct.
 #[derive(Copy, Drop)]
@@ -141,8 +141,7 @@ impl StoreImpl of StoreTrait {
     }
 
     fn generate_code(self: Store) -> felt252 {
-        let mut randNo = self.next_random() ^ 
-            starknet::contract_address_to_felt252(get_caller_address()).try_into().unwrap();
+        let mut randNo = self.next_random();
         let mut code: u128 = 0;
 
         let mut index: u8 = 0;

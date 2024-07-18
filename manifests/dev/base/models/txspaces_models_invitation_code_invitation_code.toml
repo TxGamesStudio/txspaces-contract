@@ -1,0 +1,25 @@
+kind = "DojoModel"
+class_hash = "0x6d5c1b53f99f006c96c51e4917a0777d4de82559e686a94a757ed8e19e8a2d0"
+original_class_hash = "0x6d5c1b53f99f006c96c51e4917a0777d4de82559e686a94a757ed8e19e8a2d0"
+abi = "manifests/dev/abis/base/models/txspaces_models_invitation_code_invitation_code.json"
+name = "txspaces::models::invitation_code::invitation_code"
+
+[[members]]
+name = "code"
+type = "felt252"
+key = true
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = false
+
+[[members]]
+name = "limit"
+type = "u16"
+key = false
+
+[[members]]
+name = "usedCount"
+type = "u16"
+key = false

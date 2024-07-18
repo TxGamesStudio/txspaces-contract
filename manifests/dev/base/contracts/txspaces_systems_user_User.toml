@@ -1,0 +1,10 @@
+kind = "DojoContract"
+class_hash = "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240"
+original_class_hash = "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240"
+base_class_hash = "0x0"
+abi = "manifests/dev/abis/base/contracts/txspaces_systems_user_User.json"
+reads = []
+writes = []
+computed = []
+init_calldata = []
+name = "txspaces::systems::user::User"

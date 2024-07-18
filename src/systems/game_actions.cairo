@@ -1,13 +1,13 @@
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 use starknet::ContractAddress;
 
-use lethal::models::character::{Character};
+use txspaces::models::character::{Character};
 
 #[dojo::interface]
 trait IGameActions {
-    fn buy(level: u16);
-    fn delete(idx: u8);
-    fn merge(idx1: u8, idx2: u8);
+    fn buy(action_id: felt252, level: u16);
+    fn delete(action_id: felt252, idx: u8);
+    fn merge(action_id: felt252, idx1: u8, idx2: u8);
 
     fn get_board(player: ContractAddress) -> Array<Character>;
     fn get_character_idle_rate(levels: Array<u16>) -> Array<u128>;
@@ -16,16 +16,16 @@ trait IGameActions {
 #[dojo::contract]
 mod GameActions {
     use starknet::{get_caller_address};
-    use lethal::store::{Store, StoreTrait};
-    use lethal::events::{CharacterBought, CharacterMerged, CharacterDeleted};
-    use lethal::models::user_data::{UserData};
-    use lethal::models::character::{Character, CharacterTrait};
-    use lethal::models::character_level::{CharacterLevel, CharacterLevelTrait};
+    use txspaces::store::{Store, StoreTrait};
+    use txspaces::events::{ActionCompleted, CharacterBought, CharacterMerged, CharacterDeleted};
+    use txspaces::models::user_data::{UserData};
+    use txspaces::models::character::{Character, CharacterTrait};
+    use txspaces::models::character_level::{CharacterLevel, CharacterLevelTrait};
     use super::{ContractAddress, IGameActions};
 
     #[abi(embed_v0)]
     impl IGameActionsImpl of IGameActions<ContractState> {
-        fn buy(self: @ContractState, level: u16) {
+        fn buy(self: @ContractState, action_id: felt252, level: u16) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
@@ -58,7 +58,11 @@ mod GameActions {
             
             store.set_user_data(user_data);
             store.set_character_level(character_level);
-
+            
+            emit!(world, ( ActionCompleted { 
+                player,
+                action_id
+            }));
             emit!(world, ( CharacterBought { 
                 player, 
                 created_at: starknet::get_block_timestamp(), 
@@ -67,7 +71,7 @@ mod GameActions {
             } ));
         }
 
-        fn delete(self: @ContractState, idx: u8) {
+        fn delete(self: @ContractState, action_id: felt252, idx: u8) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
@@ -76,6 +80,10 @@ mod GameActions {
             let mut char = store.character(player, idx);
             assert(char.level > 0, 'emptied');
 
+            emit!(world, ( ActionCompleted { 
+                player,
+                action_id
+            }));
             emit!(world, ( CharacterDeleted { 
                 player, 
                 created_at: starknet::get_block_timestamp(), 
@@ -87,7 +95,7 @@ mod GameActions {
             store.set_character(char);
         }
 
-        fn merge(self: @ContractState, idx1: u8, idx2: u8) {
+        fn merge(self: @ContractState, action_id: felt252, idx1: u8, idx2: u8) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
@@ -100,6 +108,10 @@ mod GameActions {
 
             char1.level += 1;
 
+            emit!(world, ( ActionCompleted { 
+                player,
+                action_id
+            }));
             emit!(world, ( CharacterMerged { 
                 player, 
                 created_at: starknet::get_block_timestamp(), 

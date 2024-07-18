@@ -3,7 +3,7 @@ use starknet::ContractAddress;
 use cubit::f128::types::fixed::{Fixed, FixedTrait, FixedTryIntoU128, ONE_u128};
 use cubit::f128::math::{ops};
 
-use lethal::constants::{BOARD_SIZE};
+use txspaces::constants::{BOARD_SIZE};
 
 #[derive(Model, Copy, Drop, Serde)]
 #[dojo::model]

@@ -1,0 +1,181 @@
+[world]
+kind = "WorldContract"
+class_hash = "0x3f63cecdc4964acafb921ba2934c6507d1b3c344edb64c2762cf08053169ab9"
+original_class_hash = "0x3f63cecdc4964acafb921ba2934c6507d1b3c344edb64c2762cf08053169ab9"
+abi = "manifests/testnet/abis/deployments/dojo_world_world.json"
+address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc81"
+transaction_hash = "0x6e2fb22ebcc394eb23aeaba33f08a54c413957e6ace70f484c8a7adc1a3f56c"
+seed = "txspaces"
+name = "dojo::world::world"
+
+[world.metadata]
+profile_name = "testnet"
+rpc_url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/mZyFr_90NKxRaHUM2mgreCIsuvAGuRU-"
+
+[base]
+kind = "Class"
+class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
+original_class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
+name = "dojo::base::base"
+
+[[contracts]]
+kind = "DojoContract"
+class_hash = "0x2a1b3b372898d596e300b9dd4e69c48b4bfeb24f840c3bc89b3fd3380d6634b"
+original_class_hash = "0x2a1b3b372898d596e300b9dd4e69c48b4bfeb24f840c3bc89b3fd3380d6634b"
+base_class_hash = "0x0"
+abi = "manifests/testnet/abis/deployments/contracts/txspaces_systems_admin_Admin.json"
+reads = []
+writes = []
+computed = []
+init_calldata = []
+name = "txspaces::systems::admin::Admin"
+
+[[contracts]]
+kind = "DojoContract"
+class_hash = "0x175d591c9588bf301cbc9f7ef2234d412fcb9427eaba22b06838d96ad5809b9"
+original_class_hash = "0x175d591c9588bf301cbc9f7ef2234d412fcb9427eaba22b06838d96ad5809b9"
+base_class_hash = "0x0"
+abi = "manifests/testnet/abis/deployments/contracts/txspaces_systems_game_actions_GameActions.json"
+reads = []
+writes = []
+computed = []
+init_calldata = []
+name = "txspaces::systems::game_actions::GameActions"
+
+[[contracts]]
+kind = "DojoContract"
+address = "0x55bf57fd5e7cc51e9dc3454cd739def751a49f25206e47d0ab41935eba96ac5"
+class_hash = "0x5e2280d051269322451210837d2a14d09355946a83890493ab59a131db6bd91"
+original_class_hash = "0x5e2280d051269322451210837d2a14d09355946a83890493ab59a131db6bd91"
+base_class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
+abi = "manifests/testnet/abis/deployments/contracts/txspaces_systems_user_User.json"
+reads = []
+writes = []
+computed = []
+init_calldata = []
+name = "txspaces::systems::user::User"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x3577e65f44c34c62059ca508ea6bf962571a54a865d5a8aa19ef36ab9808fae"
+original_class_hash = "0x3577e65f44c34c62059ca508ea6bf962571a54a865d5a8aa19ef36ab9808fae"
+abi = "manifests/testnet/abis/deployments/models/txspaces_models_character_character.json"
+name = "txspaces::models::character::character"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "pos_idx"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "level"
+type = "u16"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x11a68f70f101a89c65682f5d347a50c058036edd1c2da3e368ed04a64daae94"
+original_class_hash = "0x11a68f70f101a89c65682f5d347a50c058036edd1c2da3e368ed04a64daae94"
+abi = "manifests/testnet/abis/deployments/models/txspaces_models_character_level_character_level.json"
+name = "txspaces::models::character_level::character_level"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "level"
+type = "u32"
+key = true
+
+[[models.members]]
+name = "count"
+type = "u32"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x6d5c1b53f99f006c96c51e4917a0777d4de82559e686a94a757ed8e19e8a2d0"
+original_class_hash = "0x6d5c1b53f99f006c96c51e4917a0777d4de82559e686a94a757ed8e19e8a2d0"
+abi = "manifests/testnet/abis/deployments/models/txspaces_models_invitation_code_invitation_code.json"
+name = "txspaces::models::invitation_code::invitation_code"
+
+[[models.members]]
+name = "code"
+type = "felt252"
+key = true
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = false
+
+[[models.members]]
+name = "limit"
+type = "u16"
+key = false
+
+[[models.members]]
+name = "usedCount"
+type = "u16"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x5a66cb47fc146f0b349426d74ffe943112faac191cb6e004a4b414333041b28"
+original_class_hash = "0x5a66cb47fc146f0b349426d74ffe943112faac191cb6e004a4b414333041b28"
+abi = "manifests/testnet/abis/deployments/models/txspaces_models_random_random.json"
+name = "txspaces::models::random::random"
+
+[[models.members]]
+name = "id"
+type = "u8"
+key = true
+
+[[models.members]]
+name = "s0"
+type = "u128"
+key = false
+
+[[models.members]]
+name = "s1"
+type = "u128"
+key = false
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x1c590aea0ef467f66f6bfb724fb47cad2ccc927a9876e68cd2b321b32618acc"
+original_class_hash = "0x1c590aea0ef467f66f6bfb724fb47cad2ccc927a9876e68cd2b321b32618acc"
+abi = "manifests/testnet/abis/deployments/models/txspaces_models_user_data_user_data.json"
+name = "txspaces::models::user_data::user_data"
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "code"
+type = "felt252"
+key = false
+
+[[models.members]]
+name = "initialized"
+type = "bool"
+key = false
+
+[[models.members]]
+name = "balance"
+type = "u128"
+key = false
+
+[[models.members]]
+name = "snapshoted_at"
+type = "u64"
+key = false
