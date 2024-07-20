@@ -85,8 +85,16 @@
         "name": "buy",
         "inputs": [
           {
+            "name": "action_id",
+            "type": "core::felt252"
+          },
+          {
             "name": "level",
             "type": "core::integer::u16"
+          },
+          {
+            "name": "timestamp",
+            "type": "core::integer::u64"
           }
         ],
         "outputs": [],
@@ -97,8 +105,16 @@
         "name": "delete",
         "inputs": [
           {
+            "name": "action_id",
+            "type": "core::felt252"
+          },
+          {
             "name": "idx",
             "type": "core::integer::u8"
+          },
+          {
+            "name": "timestamp",
+            "type": "core::integer::u64"
           }
         ],
         "outputs": [],
@@ -109,12 +125,20 @@
         "name": "merge",
         "inputs": [
           {
+            "name": "action_id",
+            "type": "core::felt252"
+          },
+          {
             "name": "idx1",
             "type": "core::integer::u8"
           },
           {
             "name": "idx2",
             "type": "core::integer::u8"
+          },
+          {
+            "name": "timestamp",
+            "type": "core::integer::u64"
           }
         ],
         "outputs": [],

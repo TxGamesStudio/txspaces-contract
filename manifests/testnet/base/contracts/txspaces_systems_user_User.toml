@@ -1,6 +1,6 @@
 kind = "DojoContract"
-class_hash = "0x5e2280d051269322451210837d2a14d09355946a83890493ab59a131db6bd91"
-original_class_hash = "0x5e2280d051269322451210837d2a14d09355946a83890493ab59a131db6bd91"
+class_hash = "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240"
+original_class_hash = "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240"
 base_class_hash = "0x0"
 abi = "manifests/testnet/abis/base/contracts/txspaces_systems_user_User.json"
 reads = []

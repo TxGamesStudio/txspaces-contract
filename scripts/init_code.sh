@@ -19,12 +19,12 @@ echo "--------------------------------------------------------------------------
 echo Profile : $profile
 echo "---------------------------------------------------------------------------"
 
-sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x05 --wait
+sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x10 --wait
 sleep 420
-sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x06 --wait
-# sleep 420
-# sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x08 --wait
-# sleep 420
-# sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x09 --wait
-# sleep 420
-# sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x0a --wait
+sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x11 --wait
+sleep 420
+sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x12 --wait
+sleep 420
+sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x13 --wait
+sleep 420
+sozo execute -P $profile --fee-estimate-multiplier 5 txspaces::systems::admin::Admin add_default_code -c 0x14 --wait

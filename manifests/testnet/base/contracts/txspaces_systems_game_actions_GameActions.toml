@@ -1,6 +1,6 @@
 kind = "DojoContract"
-class_hash = "0x175d591c9588bf301cbc9f7ef2234d412fcb9427eaba22b06838d96ad5809b9"
-original_class_hash = "0x175d591c9588bf301cbc9f7ef2234d412fcb9427eaba22b06838d96ad5809b9"
+class_hash = "0x35fbbcaad13b3caa7dcc1e772bbe3c12183180a5dd59af9ab040bff084013ed"
+original_class_hash = "0x35fbbcaad13b3caa7dcc1e772bbe3c12183180a5dd59af9ab040bff084013ed"
 base_class_hash = "0x0"
 abi = "manifests/testnet/abis/base/contracts/txspaces_systems_game_actions_GameActions.json"
 reads = []

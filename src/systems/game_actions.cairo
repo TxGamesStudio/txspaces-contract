@@ -5,9 +5,9 @@ use txspaces::models::character::{Character};
 
 #[dojo::interface]
 trait IGameActions {
-    fn buy(action_id: felt252, level: u16);
-    fn delete(action_id: felt252, idx: u8);
-    fn merge(action_id: felt252, idx1: u8, idx2: u8);
+    fn buy(action_id: felt252, level: u16, timestamp: u64);
+    fn delete(action_id: felt252, idx: u8, timestamp: u64);
+    fn merge(action_id: felt252, idx1: u8, idx2: u8, timestamp: u64);
 
     fn get_board(player: ContractAddress) -> Array<Character>;
     fn get_character_idle_rate(levels: Array<u16>) -> Array<u128>;
@@ -25,7 +25,7 @@ mod GameActions {
 
     #[abi(embed_v0)]
     impl IGameActionsImpl of IGameActions<ContractState> {
-        fn buy(self: @ContractState, action_id: felt252, level: u16) {
+        fn buy(self: @ContractState, action_id: felt252, level: u16, timestamp: u64) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
@@ -71,7 +71,7 @@ mod GameActions {
             } ));
         }
 
-        fn delete(self: @ContractState, action_id: felt252, idx: u8) {
+        fn delete(self: @ContractState, action_id: felt252, idx: u8, timestamp: u64) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
@@ -95,7 +95,7 @@ mod GameActions {
             store.set_character(char);
         }
 
-        fn merge(self: @ContractState, action_id: felt252, idx1: u8, idx2: u8) {
+        fn merge(self: @ContractState, action_id: felt252, idx1: u8, idx2: u8, timestamp: u64) {
             let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);

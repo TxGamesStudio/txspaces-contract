@@ -76,6 +76,13 @@
       },
       {
         "type": "function",
+        "name": "whitelisted_init",
+        "inputs": [],
+        "outputs": [],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
         "name": "user_balance",
         "inputs": [
           {

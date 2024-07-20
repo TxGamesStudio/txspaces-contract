@@ -1199,10 +1199,10 @@
     },
     {
       "kind": "DojoContract",
-      "address": null,
-      "class_hash": "0x175d591c9588bf301cbc9f7ef2234d412fcb9427eaba22b06838d96ad5809b9",
-      "original_class_hash": "0x175d591c9588bf301cbc9f7ef2234d412fcb9427eaba22b06838d96ad5809b9",
-      "base_class_hash": "0x0",
+      "address": "0x2f62fd47cbc9bb16b2e9ab22e1a9d57352aff1cab642d93256061a6cd3c6838",
+      "class_hash": "0x35fbbcaad13b3caa7dcc1e772bbe3c12183180a5dd59af9ab040bff084013ed",
+      "original_class_hash": "0x35fbbcaad13b3caa7dcc1e772bbe3c12183180a5dd59af9ab040bff084013ed",
+      "base_class_hash": "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46",
       "abi": [
         {
           "type": "impl",
@@ -1290,8 +1290,16 @@
               "name": "buy",
               "inputs": [
                 {
+                  "name": "action_id",
+                  "type": "core::felt252"
+                },
+                {
                   "name": "level",
                   "type": "core::integer::u16"
+                },
+                {
+                  "name": "timestamp",
+                  "type": "core::integer::u64"
                 }
               ],
               "outputs": [],
@@ -1302,8 +1310,16 @@
               "name": "delete",
               "inputs": [
                 {
+                  "name": "action_id",
+                  "type": "core::felt252"
+                },
+                {
                   "name": "idx",
                   "type": "core::integer::u8"
+                },
+                {
+                  "name": "timestamp",
+                  "type": "core::integer::u64"
                 }
               ],
               "outputs": [],
@@ -1314,12 +1330,20 @@
               "name": "merge",
               "inputs": [
                 {
+                  "name": "action_id",
+                  "type": "core::felt252"
+                },
+                {
                   "name": "idx1",
                   "type": "core::integer::u8"
                 },
                 {
                   "name": "idx2",
                   "type": "core::integer::u8"
+                },
+                {
+                  "name": "timestamp",
+                  "type": "core::integer::u64"
                 }
               ],
               "outputs": [],
@@ -1446,8 +1470,8 @@
     {
       "kind": "DojoContract",
       "address": "0x55bf57fd5e7cc51e9dc3454cd739def751a49f25206e47d0ab41935eba96ac5",
-      "class_hash": "0x5e2280d051269322451210837d2a14d09355946a83890493ab59a131db6bd91",
-      "original_class_hash": "0x5e2280d051269322451210837d2a14d09355946a83890493ab59a131db6bd91",
+      "class_hash": "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240",
+      "original_class_hash": "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240",
       "base_class_hash": "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46",
       "abi": [
         {
@@ -1522,6 +1546,13 @@
                   "type": "core::felt252"
                 }
               ],
+              "outputs": [],
+              "state_mutability": "view"
+            },
+            {
+              "type": "function",
+              "name": "whitelisted_init",
+              "inputs": [],
               "outputs": [],
               "state_mutability": "view"
             },
