@@ -18,6 +18,7 @@ mod GameActions {
     use starknet::{get_caller_address};
     use txspaces::store::{Store, StoreTrait};
     use txspaces::events::{ActionCompleted, CharacterBought, CharacterMerged, CharacterDeleted};
+    use txspaces::models::burner::{Burner};
     use txspaces::models::user_data::{UserData};
     use txspaces::models::character::{Character, CharacterTrait};
     use txspaces::models::character_level::{CharacterLevel, CharacterLevelTrait};
@@ -26,11 +27,13 @@ mod GameActions {
     #[abi(embed_v0)]
     impl IGameActionsImpl of IGameActions<ContractState> {
         fn buy(self: @ContractState, action_id: felt252, level: u16, timestamp: u64) {
-            let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
+            
+            let burner = store.burner(get_caller_address());
+            let player = burner.player;
             store.snapshot_balance(player);
-
+            
             let mut user_data = store.user_data(player);
             let mut character_level = store.character_level(player, level);
             
@@ -72,11 +75,12 @@ mod GameActions {
         }
 
         fn delete(self: @ContractState, action_id: felt252, idx: u8, timestamp: u64) {
-            let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
-            store.snapshot_balance(player);
 
+            let burner = store.burner(get_caller_address());
+            let player = burner.player;
+            store.snapshot_balance(player);
             let mut char = store.character(player, idx);
             assert(char.level > 0, 'emptied');
 
@@ -96,9 +100,11 @@ mod GameActions {
         }
 
         fn merge(self: @ContractState, action_id: felt252, idx1: u8, idx2: u8, timestamp: u64) {
-            let player = get_caller_address();
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
+
+            let burner = store.burner(get_caller_address());
+            let player = burner.player;
             store.snapshot_balance(player);
             
             let mut char1 = store.character(player, idx1);

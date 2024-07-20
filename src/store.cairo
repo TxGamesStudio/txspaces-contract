@@ -13,6 +13,7 @@ use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 // Models imports
 use txspaces::constants::{BOARD_SIZE};
 use txspaces::models::random::{Random};
+use txspaces::models::burner::{Burner};
 use txspaces::models::user_data::{UserData};
 use txspaces::models::invitation_code::{InvitationCode};
 use txspaces::models::character::{Character, CharacterTrait};
@@ -34,12 +35,24 @@ impl StoreImpl of StoreTrait {
         Store { world: world }
     }
 
+    #[inline(always)]
     fn random(self: Store) -> Random {
         get!(self.world, (1), (Random))
     }
 
+    #[inline(always)]
     fn set_random(self: Store, random: Random) {
         set!(self.world, (random))
+    }
+
+    #[inline(always)]
+    fn burner(self: Store, burnerAddr: ContractAddress) -> Burner {
+        get!(self.world, (burnerAddr), (Burner))
+    }
+
+    #[inline(always)]
+    fn set_burner(self: Store, burner: Burner) {
+        set!(self.world, (burner))
     }
 
     #[inline(always)]

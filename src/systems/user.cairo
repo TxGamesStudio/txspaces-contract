@@ -5,6 +5,7 @@ use starknet::ContractAddress;
 trait IUser<TContractState> {
     fn init(self: @TContractState, code: felt252);
     fn whitelisted_init(self: @TContractState);
+    fn register_burner(self: @TContractState, burnerAddress: ContractAddress);
     fn user_balance(self: @TContractState, player: ContractAddress) -> u128;
 }
 
@@ -17,6 +18,7 @@ mod User {
     use txspaces::store::{Store, StoreTrait};
     use txspaces::events::{Initialized};
     use txspaces::models::random::{Random};
+    use txspaces::models::burner::{Burner};
     use txspaces::models::user_data::{UserData};
     use txspaces::models::invitation_code::{InvitationCode};
     use txspaces::models::character::{Character, CharacterTrait};
@@ -40,6 +42,15 @@ mod User {
 
         fn whitelisted_init(self: @ContractState) {
             internal_init(self);
+        }
+
+        fn register_burner(self: @ContractState, burnerAddress: ContractAddress) {
+            let world = self.world_dispatcher.read();
+            let mut store: Store = StoreTrait::new(world);
+
+            let mut b = store.burner(burnerAddress);
+            b.player = get_caller_address();
+            store.set_burner(b);
         }
 
         fn user_balance(self: @ContractState, player: ContractAddress) -> u128 {

@@ -11,6 +11,7 @@ mod systems {
 
 mod models {
     mod random;
+    mod burner;
     mod user_data;
     mod invitation_code;
     mod character;
