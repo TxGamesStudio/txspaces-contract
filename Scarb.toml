@@ -26,7 +26,7 @@ private_key = "0x2bbf4f9fd0bbb2e60b0316c1fe0b76cf7a4d0198bd493ced9b8df2a3a24d68a
 world_address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc81"
 
 [profile.testnet.tool.dojo.env]
-rpc_url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/mZyFr_90NKxRaHUM2mgreCIsuvAGuRU-"
+rpc_url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
 account_address = "0x03D9Fb4D09599AE4BdDd396548D314dc225b37d944cE341856eD7D2C82b9bDEF"
 private_key = "0x02ab613451cd3c9837da80b08ce3ace7c9325263e36a8907fdd8abf909a87a3f"
 world_address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc81"

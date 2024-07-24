@@ -1,5 +1,5 @@
 use core::traits::Into;
-use cubit::f128::types::fixed::{Fixed, FixedTrait, FixedTryIntoU128, ONE_u128};
+use cubit::f128::types::fixed::{Fixed, FixedTrait, FixedTryIntoU128, ONE_u128, FixedPrint};
 use cubit::f128::math::{ops};
 use starknet::ContractAddress;
  
@@ -15,6 +15,7 @@ struct CharacterLevel {
 
 trait CharacterLevelTrait {
     fn get_price(self: CharacterLevel) -> u128;
+    fn get_price_raw(count: u128, level: u128) -> u128;
 }
 
 impl CharacterLevelImpl of CharacterLevelTrait {
@@ -23,6 +24,10 @@ impl CharacterLevelImpl of CharacterLevelTrait {
         let count: u128 = self.count.into();
         let level: u128 = self.level.into();
         
+        CharacterLevelTrait::get_price_raw(count, level)
+    }
+
+    fn get_price_raw(count: u128, level: u128) -> u128 {
         let rate = if (level == 1) { 
             FixedTrait::new(107 * ONE_u128 / 100, false)    // 1.07
         } else { 
@@ -31,9 +36,15 @@ impl CharacterLevelImpl of CharacterLevelTrait {
         let initValue = if (level == 1) { 
             FixedTrait::new_unscaled(100, false) 
         } else { 
-            FixedTrait::new_unscaled(1500_u128 * 3_u128^(level-1), false)
+            ops::mul(
+                FixedTrait::new_unscaled(1500_u128, false),
+                ops::pow(FixedTrait::new_unscaled(3_u128, false), FixedTrait::new_unscaled(level-1, false))
+            )
         };
-
+        
+        // println!("{} - {}", count, level);
+        // rate.print();
+        // initValue.print();
         FixedTrait::round(ops::mul(ops::pow(rate, FixedTrait::new_unscaled(count, false)), initValue)).try_into().unwrap()
     }
 }

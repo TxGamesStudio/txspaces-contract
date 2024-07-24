@@ -23,16 +23,13 @@ echo "--------------------------------------------------------------------------
 echo Profile : $profile
 echo "---------------------------------------------------------------------------"
 
-# # enable system -> models authorizations
-# sozo -P $profile auth grant writer --fee-estimate-multiplier 5 \
-#     UserData,$(get_contract_address "txspaces::systems::user::User") \
-#     Character,$(get_contract_address "txspaces::systems::user::User") \
-#     CharacterLevel,$(get_contract_address "txspaces::systems::user::User") \
-#     InvitationCode,$(get_contract_address "txspaces::systems::user::User") \
-#     Random,$(get_contract_address "txspaces::systems::user::User")
-# sleep 420
-
+# enable system -> models authorizations
 sozo -P $profile auth grant writer --fee-estimate-multiplier 5 \
+    UserData,$(get_contract_address "txspaces::systems::user::User") \
+    Character,$(get_contract_address "txspaces::systems::user::User") \
+    CharacterLevel,$(get_contract_address "txspaces::systems::user::User") \
+    InvitationCode,$(get_contract_address "txspaces::systems::user::User") \
+    Random,$(get_contract_address "txspaces::systems::user::User") \
     UserData,$(get_contract_address "txspaces::systems::game_actions::GameActions") \
     Character,$(get_contract_address "txspaces::systems::game_actions::GameActions") \
     CharacterLevel,$(get_contract_address "txspaces::systems::game_actions::GameActions") \

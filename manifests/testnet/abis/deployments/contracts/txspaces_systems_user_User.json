@@ -83,6 +83,18 @@
       },
       {
         "type": "function",
+        "name": "register_burner",
+        "inputs": [
+          {
+            "name": "burnerAddress",
+            "type": "core::starknet::contract_address::ContractAddress"
+          }
+        ],
+        "outputs": [],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
         "name": "user_balance",
         "inputs": [
           {

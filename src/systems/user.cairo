@@ -31,7 +31,7 @@ mod User {
             let mut store: Store = StoreTrait::new(world);
 
             let mut ic0 = store.invitation_code(code);
-            assert(ic0.player.is_zero(), 'invalid code');
+            assert(!ic0.player.is_zero(), 'invalid code');
             assert(ic0.limit == 0 || ic0.usedCount < ic0.limit, 'code is fully used');
                 
             ic0.usedCount += 1;

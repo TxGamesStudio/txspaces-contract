@@ -91,10 +91,6 @@
           {
             "name": "level",
             "type": "core::integer::u16"
-          },
-          {
-            "name": "timestamp",
-            "type": "core::integer::u64"
           }
         ],
         "outputs": [],
@@ -111,10 +107,6 @@
           {
             "name": "idx",
             "type": "core::integer::u8"
-          },
-          {
-            "name": "timestamp",
-            "type": "core::integer::u64"
           }
         ],
         "outputs": [],
@@ -135,10 +127,6 @@
           {
             "name": "idx2",
             "type": "core::integer::u8"
-          },
-          {
-            "name": "timestamp",
-            "type": "core::integer::u64"
           }
         ],
         "outputs": [],
@@ -167,6 +155,26 @@
           {
             "name": "levels",
             "type": "core::array::Array::<core::integer::u16>"
+          }
+        ],
+        "outputs": [
+          {
+            "type": "core::array::Array::<core::integer::u128>"
+          }
+        ],
+        "state_mutability": "view"
+      },
+      {
+        "type": "function",
+        "name": "get_character_prices",
+        "inputs": [
+          {
+            "name": "buy_counts",
+            "type": "core::array::Array::<core::integer::u128>"
+          },
+          {
+            "name": "levels",
+            "type": "core::array::Array::<core::integer::u128>"
           }
         ],
         "outputs": [

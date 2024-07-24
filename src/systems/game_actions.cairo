@@ -5,12 +5,13 @@ use txspaces::models::character::{Character};
 
 #[dojo::interface]
 trait IGameActions {
-    fn buy(action_id: felt252, level: u16, timestamp: u64);
-    fn delete(action_id: felt252, idx: u8, timestamp: u64);
-    fn merge(action_id: felt252, idx1: u8, idx2: u8, timestamp: u64);
+    fn buy(action_id: felt252, level: u16);
+    fn delete(action_id: felt252, idx: u8);
+    fn merge(action_id: felt252, idx1: u8, idx2: u8);
 
     fn get_board(player: ContractAddress) -> Array<Character>;
     fn get_character_idle_rate(levels: Array<u16>) -> Array<u128>;
+    fn get_character_prices(buy_counts: Array<u128>, levels: Array<u128>) -> Array<u128>;
 }
 
 #[dojo::contract]
@@ -26,12 +27,13 @@ mod GameActions {
 
     #[abi(embed_v0)]
     impl IGameActionsImpl of IGameActions<ContractState> {
-        fn buy(self: @ContractState, action_id: felt252, level: u16, timestamp: u64) {
+        fn buy(self: @ContractState, action_id: felt252, level: u16) {
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
             
-            let burner = store.burner(get_caller_address());
-            let player = burner.player;
+            // let burner = store.burner(get_caller_address());
+            // let player = burner.player;
+            let player = get_caller_address();
             store.snapshot_balance(player);
             
             let mut user_data = store.user_data(player);
@@ -74,12 +76,13 @@ mod GameActions {
             } ));
         }
 
-        fn delete(self: @ContractState, action_id: felt252, idx: u8, timestamp: u64) {
+        fn delete(self: @ContractState, action_id: felt252, idx: u8) {
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
 
-            let burner = store.burner(get_caller_address());
-            let player = burner.player;
+            // let burner = store.burner(get_caller_address());
+            // let player = burner.player;
+            let player = get_caller_address();
             store.snapshot_balance(player);
             let mut char = store.character(player, idx);
             assert(char.level > 0, 'emptied');
@@ -99,12 +102,13 @@ mod GameActions {
             store.set_character(char);
         }
 
-        fn merge(self: @ContractState, action_id: felt252, idx1: u8, idx2: u8, timestamp: u64) {
+        fn merge(self: @ContractState, action_id: felt252, idx1: u8, idx2: u8) {
             let world = self.world_dispatcher.read();
             let mut store: Store = StoreTrait::new(world);
 
-            let burner = store.burner(get_caller_address());
-            let player = burner.player;
+            // let burner = store.burner(get_caller_address());
+            // let player = burner.player;
+            let player = get_caller_address();
             store.snapshot_balance(player);
             
             let mut char1 = store.character(player, idx1);
@@ -146,6 +150,22 @@ mod GameActions {
             let mut index = 0;
             loop {
                 res.append(CharacterTrait::get_idle_rate(*levels.at(index)));
+                index += 1;
+                if (index >= len) {
+                    break();
+                }
+            };
+
+            res
+        }
+
+        fn get_character_prices(buy_counts: Array<u128>, levels: Array<u128>) -> Array<u128> {
+            assert(buy_counts.len() == levels.len(), 'lengh mismatch');
+            let mut res = ArrayTrait::new();
+            let len = levels.len();
+            let mut index = 0;
+            loop {
+                res.append(CharacterLevelTrait::get_price_raw(*buy_counts.at(index), *levels.at(index)));
                 index += 1;
                 if (index >= len) {
                     break();

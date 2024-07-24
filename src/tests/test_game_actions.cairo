@@ -19,9 +19,19 @@ fn test_character() {
     // [Setup]
     let (world, systems, context) = setup::spawn();
     let store = StoreTrait::new(world);
-    systems.user.init('');
+    // systems.user.init('');
 
-    systems.game_actions.buy(1);
+    // systems.game_actions.buy(1);
+    let prices = systems.game_actions.get_character_prices(array![1,1,1,1,1], array![1,2,3,4,5]);
+    let mut index = 0;
+    loop {
+        (*prices.at(index)).print();
+
+        index += 1;
+        if (index >= prices.len()) {
+            break;
+        }
+    }
 
     // let mut user_data = store.user_data(context.player_id);
     // assert(user_data.balance == DEFAULT_BALANCE - 100, 'invalid balance value');

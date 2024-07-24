@@ -10,7 +10,7 @@ name = "dojo::world::world"
 
 [world.metadata]
 profile_name = "testnet"
-rpc_url = "https://starknet-sepolia.g.alchemy.com/starknet/version/rpc/v0_7/mZyFr_90NKxRaHUM2mgreCIsuvAGuRU-"
+rpc_url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
 
 [base]
 kind = "Class"
@@ -20,8 +20,8 @@ name = "dojo::base::base"
 
 [[contracts]]
 kind = "DojoContract"
-class_hash = "0x2a1b3b372898d596e300b9dd4e69c48b4bfeb24f840c3bc89b3fd3380d6634b"
-original_class_hash = "0x2a1b3b372898d596e300b9dd4e69c48b4bfeb24f840c3bc89b3fd3380d6634b"
+class_hash = "0x31f163ad70dce8cae7c8cf42f73034ffce11405d431262aff3188b101396c6a"
+original_class_hash = "0x31f163ad70dce8cae7c8cf42f73034ffce11405d431262aff3188b101396c6a"
 base_class_hash = "0x0"
 abi = "manifests/testnet/abis/deployments/contracts/txspaces_systems_admin_Admin.json"
 reads = []
@@ -33,8 +33,8 @@ name = "txspaces::systems::admin::Admin"
 [[contracts]]
 kind = "DojoContract"
 address = "0x2f62fd47cbc9bb16b2e9ab22e1a9d57352aff1cab642d93256061a6cd3c6838"
-class_hash = "0x35fbbcaad13b3caa7dcc1e772bbe3c12183180a5dd59af9ab040bff084013ed"
-original_class_hash = "0x35fbbcaad13b3caa7dcc1e772bbe3c12183180a5dd59af9ab040bff084013ed"
+class_hash = "0x78f36dde944fb878f5631f6324ed6afb2d6856944d5260463d90ec2f46e3574"
+original_class_hash = "0x78f36dde944fb878f5631f6324ed6afb2d6856944d5260463d90ec2f46e3574"
 base_class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
 abi = "manifests/testnet/abis/deployments/contracts/txspaces_systems_game_actions_GameActions.json"
 reads = []
@@ -46,8 +46,8 @@ name = "txspaces::systems::game_actions::GameActions"
 [[contracts]]
 kind = "DojoContract"
 address = "0x55bf57fd5e7cc51e9dc3454cd739def751a49f25206e47d0ab41935eba96ac5"
-class_hash = "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240"
-original_class_hash = "0x27f4b702ffa11e2d04cc720eba4c0292746adfbce12b4aa046a83f1b2d4b240"
+class_hash = "0x24cf43b051bbe71532e495e4fa3c6114287a7e8a86c944bb38cda738bafa35"
+original_class_hash = "0x24cf43b051bbe71532e495e4fa3c6114287a7e8a86c944bb38cda738bafa35"
 base_class_hash = "0x22f3e55b61d86c2ac5239fa3b3b8761f26b9a5c0b5f61ddbd5d756ced498b46"
 abi = "manifests/testnet/abis/deployments/contracts/txspaces_systems_user_User.json"
 reads = []
@@ -55,6 +55,23 @@ writes = []
 computed = []
 init_calldata = []
 name = "txspaces::systems::user::User"
+
+[[models]]
+kind = "DojoModel"
+class_hash = "0x81a1169daf23f2242217414a6e9713dbdd5569605f9e1e76a472e3225771a0"
+original_class_hash = "0x81a1169daf23f2242217414a6e9713dbdd5569605f9e1e76a472e3225771a0"
+abi = "manifests/testnet/abis/deployments/models/txspaces_models_burner_burner.json"
+name = "txspaces::models::burner::burner"
+
+[[models.members]]
+name = "burner"
+type = "ContractAddress"
+key = true
+
+[[models.members]]
+name = "player"
+type = "ContractAddress"
+key = false
 
 [[models]]
 kind = "DojoModel"
