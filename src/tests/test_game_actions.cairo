@@ -8,11 +8,11 @@ use starknet::testing::set_contract_address;
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
 // Internal imports
-use txspaces::constants::{DEFAULT_BALANCE};
-use txspaces::store::{Store, StoreTrait};
-use txspaces::tests::setup::{setup, setup::Systems, setup::Context};
-use txspaces::systems::user::{IUserDispatcherTrait};
-use txspaces::systems::game_actions::{IGameActionsDispatcher, IGameActionsDispatcherTrait};
+use txspaces_dev::constants::{DEFAULT_BALANCE};
+use txspaces_dev::store::{Store, StoreTrait};
+use txspaces_dev::tests::setup::{setup, setup::Systems, setup::Context};
+use txspaces_dev::systems::user::{IUserDispatcherTrait};
+use txspaces_dev::systems::game_actions::{IGameActionsDispatcher, IGameActionsDispatcherTrait};
 
 #[test]
 fn test_character() {

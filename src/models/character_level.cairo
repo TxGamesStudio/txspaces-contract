@@ -24,7 +24,7 @@ impl CharacterLevelImpl of CharacterLevelTrait {
         let count: u128 = self.count.into();
         let level: u128 = self.level.into();
         
-        CharacterLevelTrait::get_price_raw(count, level)
+        Self::get_price_raw(count, level)
     }
 
     fn get_price_raw(count: u128, level: u128) -> u128 {
@@ -42,9 +42,6 @@ impl CharacterLevelImpl of CharacterLevelTrait {
             )
         };
         
-        // println!("{} - {}", count, level);
-        // rate.print();
-        // initValue.print();
         FixedTrait::round(ops::mul(ops::pow(rate, FixedTrait::new_unscaled(count, false)), initValue)).try_into().unwrap()
     }
 }

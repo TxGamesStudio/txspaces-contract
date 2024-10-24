@@ -1,0 +1,20 @@
+kind = "DojoModel"
+class_hash = "0x608247988863c84f114da387267d11224d886309f5dc27fb6f616cb1d780c2"
+original_class_hash = "0x608247988863c84f114da387267d11224d886309f5dc27fb6f616cb1d780c2"
+abi = "manifests/dev/abis/base/models/txspaces_dev_models_character_level_character_level.json"
+name = "txspaces_dev::models::character_level::character_level"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "level"
+type = "u32"
+key = true
+
+[[members]]
+name = "count"
+type = "u32"
+key = false

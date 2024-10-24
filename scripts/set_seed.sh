@@ -19,4 +19,4 @@ echo "--------------------------------------------------------------------------
 echo Profile : $profile
 echo "---------------------------------------------------------------------------"
 
-sozo execute -P $profile txspaces::systems::admin::Admin seed -c 0x225b37d944ce341856ed7d2c82b9bdef --wait
+sozo execute -P $profile txspaces_dev::systems::admin::Admin seed -c 0x225b37d944ce341856ed7d2c82b9bdef --wait

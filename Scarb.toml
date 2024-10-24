@@ -1,6 +1,6 @@
 [package]
 cairo-version = "=2.6.3"
-name = "txspaces"
+name = "txspaces_dev"
 version = "0.0.1"
  
 [cairo]
@@ -8,7 +8,7 @@ sierra-replace-ids = true
  
 [dependencies]
 cubit = { git = "https://github.com/influenceth/cubit.git" }
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.7.3" }
+dojo = { git = "https://github.com/dojoengine/dojo", tag = "v0.7.4" }
  
 [[target.dojo]]
 
@@ -29,4 +29,4 @@ world_address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc8
 rpc_url = "https://starknet-sepolia.public.blastapi.io/rpc/v0_7"
 account_address = "0x03D9Fb4D09599AE4BdDd396548D314dc225b37d944cE341856eD7D2C82b9bDEF"
 private_key = "0x02ab613451cd3c9837da80b08ce3ace7c9325263e36a8907fdd8abf909a87a3f"
-world_address = "0xcf32781cd5a3013058fa561406e0c7f16656fc029e1a7659a86ee7067fdc81"
+world_address = "0x4f34c14a4c79ea42e5f4d2cb01a5e81ae79c0c26ef9b1be75bdabf40bb5f422"

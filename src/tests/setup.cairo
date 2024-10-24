@@ -12,13 +12,13 @@ use core::debug::PrintTrait;
     use dojo::test_utils::{spawn_test_world, deploy_contract};
 
     // Internal imports
-    use txspaces::models::user_data::UserData;
-    use txspaces::models::character::Character;
-    use txspaces::models::character_level::CharacterLevel;
+    use txspaces_dev::models::user_data::UserData;
+    use txspaces_dev::models::character::Character;
+    use txspaces_dev::models::character_level::CharacterLevel;
 
-    use txspaces::systems::admin::{Admin as admin_actions, IAdminDispatcher, IAdminDispatcherTrait};
-    use txspaces::systems::user::{User as user_actions, IUserDispatcher, IUserDispatcherTrait};
-    use txspaces::systems::game_actions::{GameActions as game_actions, IGameActionsDispatcher, IGameActionsDispatcherTrait};
+    use txspaces_dev::systems::admin::{Admin as admin_actions, IAdminDispatcher, IAdminDispatcherTrait};
+    use txspaces_dev::systems::user::{User as user_actions, IUserDispatcher, IUserDispatcherTrait};
+    use txspaces_dev::systems::game_actions::{GameActions as game_actions, IGameActionsDispatcher, IGameActionsDispatcherTrait};
 
     // Constants
 
@@ -45,9 +45,9 @@ use core::debug::PrintTrait;
     fn spawn() -> (IWorldDispatcher, Systems, Context) {
         // [Setup] World
         let mut models = core::array::ArrayTrait::new();
-        models.append(txspaces::models::user_data::user_data::TEST_CLASS_HASH);
-        models.append(txspaces::models::character::character::TEST_CLASS_HASH);
-        models.append(txspaces::models::character_level::character_level::TEST_CLASS_HASH);
+        models.append(txspaces_dev::models::user_data::user_data::TEST_CLASS_HASH);
+        models.append(txspaces_dev::models::character::character::TEST_CLASS_HASH);
+        models.append(txspaces_dev::models::character_level::character_level::TEST_CLASS_HASH);
         let world = spawn_test_world(models);
 
         // // [Setup] Systems

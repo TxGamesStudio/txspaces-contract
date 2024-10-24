@@ -1,0 +1,15 @@
+kind = "DojoModel"
+class_hash = "0x753ee09816a4c2a6d862ed46fb1a00aea3d9f4f4c770cf4c7d01d03f1b9fd7"
+original_class_hash = "0x753ee09816a4c2a6d862ed46fb1a00aea3d9f4f4c770cf4c7d01d03f1b9fd7"
+abi = "manifests/dev/abis/base/models/txspaces_dev_models_burner_burner.json"
+name = "txspaces_dev::models::burner::burner"
+
+[[members]]
+name = "burner"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = false

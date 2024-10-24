@@ -1,0 +1,30 @@
+kind = "DojoModel"
+class_hash = "0x158050dcf35a3fcba2b1c2bd809ca85ca16109c8865898462c683315d2c09c9"
+original_class_hash = "0x158050dcf35a3fcba2b1c2bd809ca85ca16109c8865898462c683315d2c09c9"
+abi = "manifests/dev/abis/base/models/txspaces_dev_models_user_data_user_data.json"
+name = "txspaces_dev::models::user_data::user_data"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "code"
+type = "felt252"
+key = false
+
+[[members]]
+name = "initialized"
+type = "bool"
+key = false
+
+[[members]]
+name = "balance"
+type = "u128"
+key = false
+
+[[members]]
+name = "snapshoted_at"
+type = "u64"
+key = false

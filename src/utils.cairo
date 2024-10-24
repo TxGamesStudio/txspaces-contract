@@ -1,6 +1,6 @@
 use starknet::ContractAddress;
-use txspaces::constants::{MAX_BLOCK_TIME};
-use txspaces::store::{Store, StoreTrait};
+use txspaces_dev::constants::{MAX_BLOCK_TIME};
+use txspaces_dev::store::{Store, StoreTrait};
 
 const U64: u128 = 0xffffffffffffffff_u128; // 2**64-1
 
@@ -41,5 +41,31 @@ fn pow2(mut i: u128) -> u128 {
         }
         p *= 2;
         i -= 1;
+    }
+}
+
+fn max<
+    T,
+    impl TOrd: PartialOrd<T>,
+    impl TDrop: Drop<T>,
+    impl TCopy: Copy<T>
+    >(t1: T, t2: T) -> T {
+    if t1 > t2 {
+        t1
+    } else {
+        t2
+    }
+}
+
+fn min<
+    T,
+    impl TOrd: PartialOrd<T>,
+    impl TDrop: Drop<T>,
+    impl TCopy: Copy<T>
+    >(t1: T, t2: T) -> T {
+    if t1 > t2 {
+        t2
+    } else {
+        t1
     }
 }

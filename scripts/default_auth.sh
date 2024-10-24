@@ -25,20 +25,21 @@ echo "--------------------------------------------------------------------------
 
 # enable system -> models authorizations
 sozo -P $profile auth grant writer --fee-estimate-multiplier 5 \
-    UserData,$(get_contract_address "txspaces::systems::user::User") \
-    Character,$(get_contract_address "txspaces::systems::user::User") \
-    CharacterLevel,$(get_contract_address "txspaces::systems::user::User") \
-    InvitationCode,$(get_contract_address "txspaces::systems::user::User") \
-    Random,$(get_contract_address "txspaces::systems::user::User") \
-    UserData,$(get_contract_address "txspaces::systems::game_actions::GameActions") \
-    Character,$(get_contract_address "txspaces::systems::game_actions::GameActions") \
-    CharacterLevel,$(get_contract_address "txspaces::systems::game_actions::GameActions") \
-    InvitationCode,$(get_contract_address "txspaces::systems::game_actions::GameActions") \
-    Random,$(get_contract_address "txspaces::systems::game_actions::GameActions")
+    Burner,$(get_contract_address "txspaces_dev::systems::user::User") \
+    UserData,$(get_contract_address "txspaces_dev::systems::user::User") \
+    Character,$(get_contract_address "txspaces_dev::systems::user::User") \
+    CharacterLevel,$(get_contract_address "txspaces_dev::systems::user::User") \
+    InvitationCode,$(get_contract_address "txspaces_dev::systems::user::User") \
+    Random,$(get_contract_address "txspaces_dev::systems::user::User") \
+    UserData,$(get_contract_address "txspaces_dev::systems::game_actions::GameActions") \
+    Character,$(get_contract_address "txspaces_dev::systems::game_actions::GameActions") \
+    CharacterLevel,$(get_contract_address "txspaces_dev::systems::game_actions::GameActions") \
+    InvitationCode,$(get_contract_address "txspaces_dev::systems::game_actions::GameActions") \
+    Random,$(get_contract_address "txspaces_dev::systems::game_actions::GameActions")
 # sleep 420
 
 # sozo -P $profile auth grant writer --fee-estimate-multiplier 5 \
-#     InvitationCode,$(get_contract_address "txspaces::systems::admin::Admin") \
-#     Random,$(get_contract_address "txspaces::systems::admin::Admin")
+#     InvitationCode,$(get_contract_address "txspaces_dev::systems::admin::Admin") \
+#     Random,$(get_contract_address "txspaces_dev::systems::admin::Admin")
 
 echo "Default authorizations have been successfully set."

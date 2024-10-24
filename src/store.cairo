@@ -11,15 +11,18 @@ use starknet::{get_caller_address, get_block_timestamp};
 use dojo::world::{IWorldDispatcher, IWorldDispatcherTrait};
 
 // Models imports
-use txspaces::constants::{BOARD_SIZE};
-use txspaces::models::random::{Random};
-use txspaces::models::burner::{Burner};
-use txspaces::models::user_data::{UserData};
-use txspaces::models::invitation_code::{InvitationCode};
-use txspaces::models::character::{Character, CharacterTrait};
-use txspaces::models::character_level::{CharacterLevel};
+use txspaces_dev::constants::{BOARD_SIZE};
+use txspaces_dev::models::random::{Random};
+use txspaces_dev::models::burner::{Burner};
+use txspaces_dev::models::user_data::{UserData};
+use txspaces_dev::models::invitation_code::{InvitationCode};
+use txspaces_dev::models::character::{Character, CharacterTrait};
+use txspaces_dev::models::character_level::{CharacterLevel};
 
-use txspaces::utils::{rotl, U64};
+use txspaces_dev::models::building_head_quarter::{BuildingHeadQuarter, BuildingHeadQuarterTrait};
+use txspaces_dev::models::building_army::{BuildingArmy, BuildingArmyTrait};
+
+use txspaces_dev::utils::{min, rotl, U64};
 
 /// Store struct.
 #[derive(Copy, Drop)]
@@ -40,20 +43,20 @@ impl StoreImpl of StoreTrait {
         get!(self.world, (1), (Random))
     }
 
-    #[inline(always)]
-    fn set_random(self: Store, random: Random) {
-        set!(self.world, (random))
-    }
+    // #[inline(always)]
+    // fn set_random(self: Store, random: Random) {
+    //     set!(self.world, (random))
+    // }
 
     #[inline(always)]
     fn burner(self: Store, burnerAddr: ContractAddress) -> Burner {
         get!(self.world, (burnerAddr), (Burner))
     }
 
-    #[inline(always)]
-    fn set_burner(self: Store, burner: Burner) {
-        set!(self.world, (burner))
-    }
+    // #[inline(always)]
+    // fn set_burner(self: Store, burner: Burner) {
+    //     set!(self.world, (burner))
+    // }
 
     #[inline(always)]
     fn user_data(self: Store, player: ContractAddress) -> UserData {
@@ -65,10 +68,10 @@ impl StoreImpl of StoreTrait {
         get!(self.world, (code), (InvitationCode))
     }
 
-    #[inline(always)]
-    fn set_invitation_code(self: Store, code: InvitationCode) {
-        set!(self.world, (code));
-    }
+    // #[inline(always)]
+    // fn set_invitation_code(self: Store, code: InvitationCode) {
+    //     set!(self.world, (code));
+    // }
 
     #[inline(always)]
     fn character(self: Store, player: ContractAddress, idx: u8) -> Character {
@@ -81,25 +84,42 @@ impl StoreImpl of StoreTrait {
         get!(self.world, (player, level), (CharacterLevel))
     }
 
+    // #[inline(always)]
+    // fn set_user_data(self: Store, user_data: UserData) {
+    //     set!(self.world, (user_data))
+    // }
+
+    // #[inline(always)]
+    // fn set_character(self: Store, character: Character) {
+    //     set!(self.world, (character))
+    // }
+
+    // #[inline(always)]
+    // fn set_character_level(self: Store, character_level: CharacterLevel) {
+    //     set!(self.world, (character_level))
+    // }
+
     #[inline(always)]
-    fn set_user_data(self: Store, user_data: UserData) {
-        set!(self.world, (user_data))
+    fn building_hq(self: Store, player: ContractAddress) -> BuildingHeadQuarter {
+        get!(self.world, (player), (BuildingHeadQuarter))
     }
 
     #[inline(always)]
-    fn set_character(self: Store, character: Character) {
-        set!(self.world, (character))
+    fn building_army(self: Store, player: ContractAddress) -> BuildingArmy {
+        get!(self.world, (player), (BuildingArmy))
     }
 
-    #[inline(always)]
-    fn set_character_level(self: Store, character_level: CharacterLevel) {
-        set!(self.world, (character_level))
-    }
+    // #[inline(always)]
+    // fn set_building_hq(self: Store, hq: BuildingHeadQuarter) {
+    //     set!(self.world, (hq))
+    // }
 
     // #[inline(always)]
     fn idle_balance(self: Store, player: ContractAddress) -> u128 {
         let user_data = self.user_data(player);
-        let elapsed = starknet::get_block_timestamp() - user_data.snapshoted_at;
+        let hq = self.building_hq(player);
+        
+        let elapsed = min(starknet::get_block_timestamp() - user_data.snapshoted_at, hq.get_minutes_capacity() * 60);
 
         let mut balance: u128 = 0;
         let mut index: u8 = 0;
@@ -113,7 +133,7 @@ impl StoreImpl of StoreTrait {
             }
         };
 
-        balance
+        balance * hq.get_bonus_percentage() / 10_000 + balance
     }
 
     #[inline(always)]
@@ -122,7 +142,9 @@ impl StoreImpl of StoreTrait {
         user_data.balance += self.idle_balance(player);
         user_data.snapshoted_at = starknet::get_block_timestamp();
 
-        self.set_user_data(user_data);
+        set!(self.world, (user_data));
+
+        // self.set_user_data(user_data);
     }
 
     fn board_characters(self: Store, player: ContractAddress) -> Array<Character> {
@@ -148,7 +170,9 @@ impl StoreImpl of StoreTrait {
         
         random.s0 = (rotl(random.s0, 24) ^ random.s1 ^ (random.s1 * 65536)) & U64;
         random.s1 = (rotl(random.s1, 37) & U64);
-        self.set_random(random);
+
+        set!(self.world, (random));
+        // self.set_random(random);
 
         result
     }

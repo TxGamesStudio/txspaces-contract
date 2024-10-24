@@ -16,6 +16,8 @@ mod models {
     mod invitation_code;
     mod character;
     mod character_level;
+    mod building_head_quarter;
+    mod building_army;
 }
 
 #[cfg(test)]

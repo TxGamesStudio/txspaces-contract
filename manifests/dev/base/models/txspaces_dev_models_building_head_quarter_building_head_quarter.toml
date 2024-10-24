@@ -1,0 +1,15 @@
+kind = "DojoModel"
+class_hash = "0xa5721647eb085abedbcc58327fbcf329dd7bac9c57633ae353177ee2d37d2f"
+original_class_hash = "0xa5721647eb085abedbcc58327fbcf329dd7bac9c57633ae353177ee2d37d2f"
+abi = "manifests/dev/abis/base/models/txspaces_dev_models_building_head_quarter_building_head_quarter.json"
+name = "txspaces_dev::models::building_head_quarter::building_head_quarter"
+
+[[members]]
+name = "player"
+type = "ContractAddress"
+key = true
+
+[[members]]
+name = "level"
+type = "u8"
+key = false

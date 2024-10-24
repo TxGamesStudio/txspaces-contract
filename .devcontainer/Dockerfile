@@ -11,4 +11,4 @@ RUN curl -L https://slot.cartridge.sh | bash
 RUN echo "export PATH=$PATH:/root/.local/bin:/root/.dojo/bin:/root/.slot/bin:/root/.cargo/bin" >> ~/.zshrc
 
 ENV SHELL /bin/zsh
-RUN curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- --version 2.6.3
+RUN curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | sh -s -- --version 2.7.0

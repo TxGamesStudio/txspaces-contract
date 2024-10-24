@@ -7,6 +7,9 @@ trait IUser<TContractState> {
     fn whitelisted_init(self: @TContractState);
     fn register_burner(self: @TContractState, burnerAddress: ContractAddress);
     fn user_balance(self: @TContractState, player: ContractAddress) -> u128;
+    fn claim_idle_balance(self: @TContractState);
+    fn upgrade_head_quarter(self: @TContractState);
+    fn upgrade_army(self: @TContractState);
 }
 
 #[dojo::contract]
@@ -14,14 +17,16 @@ mod User {
     use core::option::OptionTrait;
     use core::traits::TryInto;
     use starknet::{get_caller_address, get_block_timestamp};
-    use txspaces::constants::{DEFAULT_BALANCE, BOARD_SIZE};
-    use txspaces::store::{Store, StoreTrait};
-    use txspaces::events::{Initialized};
-    use txspaces::models::random::{Random};
-    use txspaces::models::burner::{Burner};
-    use txspaces::models::user_data::{UserData};
-    use txspaces::models::invitation_code::{InvitationCode};
-    use txspaces::models::character::{Character, CharacterTrait};
+    use txspaces_dev::constants::{DEFAULT_BALANCE, BOARD_SIZE};
+    use txspaces_dev::store::{Store, StoreTrait};
+    use txspaces_dev::events::{Initialized};
+    use txspaces_dev::models::random::{Random};
+    use txspaces_dev::models::burner::{Burner};
+    use txspaces_dev::models::user_data::{UserData};
+    use txspaces_dev::models::invitation_code::{InvitationCode};
+    use txspaces_dev::models::character::{Character, CharacterTrait};
+    use txspaces_dev::models::building_head_quarter::{BuildingHeadQuarter, BuildingHeadQuarterTrait};
+    use txspaces_dev::models::building_army::{BuildingArmy, BuildingArmyTrait};
     use super::{ContractAddress, IUser};
 
     #[abi(embed_v0)]
@@ -35,7 +40,8 @@ mod User {
             assert(ic0.limit == 0 || ic0.usedCount < ic0.limit, 'code is fully used');
                 
             ic0.usedCount += 1;
-            store.set_invitation_code(ic0);
+            set!(world, (ic0));
+            // store.set_invitation_code(ic0);
 
             internal_init(self);
         }
@@ -50,7 +56,8 @@ mod User {
 
             let mut b = store.burner(burnerAddress);
             b.player = get_caller_address();
-            store.set_burner(b);
+            set!(world, (b));
+            // store.set_burner(b);
         }
 
         fn user_balance(self: @ContractState, player: ContractAddress) -> u128 {
@@ -60,6 +67,41 @@ mod User {
 
             user_data.balance + store.idle_balance(player)
         }
+
+        fn claim_idle_balance(self: @ContractState) {
+            let world = self.world_dispatcher.read();
+            let mut store: Store = StoreTrait::new(world);
+
+            store.snapshot_balance(get_caller_address());
+        }
+
+        fn upgrade_head_quarter(self: @ContractState) {
+            let player = get_caller_address();
+            let world = self.world_dispatcher.read();
+
+            let mut hq = get!(world, (player), (BuildingHeadQuarter));
+            let mut user_data = get!(world, (player), (UserData));
+            let price = hq.get_upgrade_price();
+            assert(user_data.balance >= price, 'execced balance');
+            user_data.balance -= price;
+            hq.level += 1;
+
+            set!(world, (user_data, hq));
+        }
+
+        fn upgrade_army(self: @ContractState) {
+            let player = get_caller_address();
+            let world = self.world_dispatcher.read();
+
+            let mut army = get!(world, (player), (BuildingArmy));
+            let mut user_data = get!(world, (player), (UserData));
+            let price = army.get_upgrade_price();
+            assert(user_data.balance >= price, 'execced balance');
+            user_data.balance -= price;
+            army.level += 1;
+
+            set!(world, (user_data, army));
+        }
     }
 
     fn internal_init(self: @ContractState) {
@@ -67,7 +109,7 @@ mod User {
         let world = self.world_dispatcher.read();
         let mut store: Store = StoreTrait::new(world);
 
-        let mut user_data = store.user_data(player);
+        let mut user_data = get!(world, (player), (UserData));
         assert(!user_data.initialized, 'initialized');
         user_data.initialized = true;
         user_data.balance = DEFAULT_BALANCE;
@@ -81,16 +123,23 @@ mod User {
 
             ic.player = player;
             ic.limit = 10;
-            store.set_invitation_code(ic);
+            set!(world, (ic));
+            // store.set_invitation_code(ic);
             user_data.code = code;
             break;
         };
+        let mut hq = get!(world, (player), (BuildingHeadQuarter));
+        hq.level = 1;
 
-        store.set_user_data(user_data);
+        let mut army = get!(world, (player), (BuildingArmy));
+        army.level = 1;
+        
+        set!(world, (user_data, hq, army));
 
         let mut index = 0;
         loop {
-            store.set_character(Character { pos_idx: index, player, level: 0 });
+            set!(world, (Character { pos_idx: index, player, level: 0 }));
+            // store.set_character(Character { pos_idx: index, player, level: 0 });
             index += 1;
             if (index >= BOARD_SIZE) {
                 break();
